@@ -1,8 +1,10 @@
 package com.speedup.qa.stepdefinitions;
 
 import com.speedup.qa.models.FlightData;
-import com.speedup.qa.questions.AdultsPassengersMatch;
+import com.speedup.qa.models.FlightDataDestination;
 import com.speedup.qa.questions.CityIATAMatch;
+import com.speedup.qa.questions.OutboundDateMatch;
+import com.speedup.qa.tasks.FlightCityDestination;
 import com.speedup.qa.tasks.FlightCityOrigin;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
@@ -19,7 +21,7 @@ import java.util.List;
 import static net.serenitybdd.screenplay.actors.OnStage.setTheStage;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 
-public class flightOriginByIATA {
+public class flightDestinationByIATAStepDefinitions {
     @Managed
     private WebDriver myBrowser;
 
@@ -28,14 +30,15 @@ public class flightOriginByIATA {
         setTheStage(Cast.whereEveryoneCan(BrowseTheWeb.with(myBrowser)));
         theActorCalled("Mateo Castillo");
     }
+    @When("^The system opens flight destination selector, enters the IATA code and clicks on the city$")
+    public void theSystemOpensFlightDestinationSelectorEntersTheIATACodeAndClicksOnTheCity(List<FlightDataDestination> data) {
+        OnStage.theActorInTheSpotlight().attemptsTo(FlightCityDestination.withData(data.get(0)));
 
-    @When("^user clicks flight origin selector and enters the IATA code$")
-    public void userClicksFlightOriginSelectorAndEntersTheIATACode(List<FlightData> data) {
-        OnStage.theActorInTheSpotlight().attemptsTo(FlightCityOrigin.withData(data.get(0)));
     }
 
-    @Then("^The user should see the flight city destinations (.*)$")
-    public void theUserShouldSeeTheFlightCityDestinations(String cityIATAMatch) {
-        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(CityIATAMatch.matchResponse(),org.hamcrest.Matchers.is(cityIATAMatch)));
-        }
+    @Then("^The user should go to the outbound selector(.*)$")
+    public void theUserShouldGoToTheOutboundSelector(String outboundDateMatch) {
+        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(OutboundDateMatch.matchResponse(),org.hamcrest.Matchers.is(outboundDateMatch)));
     }
+    }
+

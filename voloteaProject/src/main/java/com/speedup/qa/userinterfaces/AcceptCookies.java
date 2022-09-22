@@ -7,5 +7,5 @@ public class AcceptCookies {
 
     public static final Target CLICK_ON_ACCEPT_COOKIES = Target
             .the("The user clicks on accept button")
-            .located(By.id("onetrust-accept-btn-handler"));
+            .located(By.xpath("//button[@id='onetrust-accept-btn-handler']"));
 }

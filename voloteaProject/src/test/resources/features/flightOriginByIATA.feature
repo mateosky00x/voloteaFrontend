@@ -9,4 +9,4 @@ Feature: Chosing flight origin by IATA code
   Scenario: Login with valid IATA code
     When user clicks flight origin selector and enters the IATA code
       | bcn    |
-    Then The user should see the flight city origin Barcelona
+    Then The user should see the flight city destinations desde Barcelona

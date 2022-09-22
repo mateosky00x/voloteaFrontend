@@ -6,8 +6,7 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 
-import static com.speedup.qa.userinterfaces.PassengersInterface.CLICK_ON_FLIGHT_ORIGIN_SELECTOR;
-import static com.speedup.qa.userinterfaces.PassengersInterface.FLIGHT_ORIGIN_SELECTOR_INPUT;
+import static com.speedup.qa.userinterfaces.PassengersInterface.*;
 
 public class FlightCityOrigin implements Task {
 
@@ -18,6 +17,7 @@ public class FlightCityOrigin implements Task {
     public <T extends Actor> void performAs(T actor){
         actor.attemptsTo(Click.on(CLICK_ON_FLIGHT_ORIGIN_SELECTOR));
         actor.attemptsTo(Enter.theValue(flightData.getIataCodeOrigin()).into(FLIGHT_ORIGIN_SELECTOR_INPUT));
+        actor.attemptsTo(Click.on(CITY_SELECTION));
     }
 
     public static FlightCityOrigin withData(FlightData flightData) {
